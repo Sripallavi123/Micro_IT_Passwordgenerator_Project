@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .content-box {
+            background-color: rgba(0, 0, 0, 0.75);
+            padding: 3rem;
+            border-radius: 15px;
+            max-width: 800px;
+            width: 90%;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            color: white;
+            position: relative;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.8rem;
+            animation: sparkle 2s infinite;
+        }
+        
+        @keyframes sparkle {
+            0% { text-shadow: 0 0 10px #fff; }
+            50% { text-shadow: 0 0 20px #fff, 0 0 30px #4CAF50; }
+            100% { text-shadow: 0 0 10px #fff; }
+        }
+        
+        /* About Us section - initially hidden */
+        .about-section {
+            display: none;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .about-section h2 {
+            color: #4CAF50;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .about-section p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .about-section ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Buttons */
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+        }
+        
+        .generate-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .generate-btn:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+        }
+        
+        .about-btn {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .about-btn:hover {
+            background-color: #0b7dda;
+            transform: translateY(-3px);
+        }
+        
+        /* Rest of your existing styles... */
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+            margin: 1rem;
+            min-width: 200px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .password-tips {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            color: white;
+        }
+        
+        .password-tips h2 {
+            color: #4CAF50;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .tips-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .bad-tips, .good-tips {
+            width: 48%;
+            min-width: 300px;
+            color: white;
+        }
+        
+        ul {
+            list-style-type: none;
+        }
+        
+        li {
+            margin: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: white;
+        }
+        
+        .bad-tips li:before {
+            content: "✖";
+            color: #ff6b6b;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .good-tips li:before {
+            content: "✓";
+            color: #6bff6b;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .content-box {
+                padding: 2rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .bad-tips, .good-tips {
+                width: 100%;
+                margin-bottom: 1.5rem;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content-box">
+        <h1>Welcome to SecurePass Generator</h1>
+        
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">81%</div>
+                <p>of hacking breaches use weak passwords</p>
+            </div>
+            <div class="stat">
+                <div class="stat-number">3 seconds</div>
+                <p>to crack passwords like "123456"</p>
+            </div>
+        </div>
+        
+        <div class="password-tips">
+            <h2>Password Do's and Don'ts</h2>
+            <div class="tips-container">
+                <div class="bad-tips">
+                    <h3>❌ Common Mistakes</h3>
+                    <ul>
+                        <li>Using personal information</li>
+                        <li>Short passwords (under 12 chars)</li>
+                        <li>No special characters</li>
+                        <li>Password reuse across sites</li>
+                    </ul>
+                </div>
+                <div class="good-tips">
+                    <h3>✅ Best Practices</h3>
+                    <ul>
+                        <li>Minimum 12 characters</li>
+                        <li>Mix of upper/lower case</li>
+                        <li>Numbers and symbols</li>
+                        <li>Unique for each account</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- About Us Section (hidden by default) -->
+        <div class="about-section" id="aboutSection">
+            <h2>About SecurePass Generator</h2>
+            <p>Welcome to SecurePass Generator, your trusted tool for creating strong, secure passwords instantly. In today's digital world, password security is more important than ever, and we're here to help you protect your online accounts.</p>
+            
+            <h3>Our Mission</h3>
+            <p>We believe everyone deserves simple, free access to tools that enhance their online security. Our mission is to help users create passwords that are both secure and memorable.</p>
+            
+            <h3>Key Features:</h3>
+            <ul>
+                <li>Military-grade password generation</li>
+                <li>Customizable password options</li>
+                <li>No data collection - everything stays in your browser</li>
+                <li>Educational resources about password security</li>
+            </ul>
+            
+            <p><strong>Remember:</strong> Always use different passwords for each account, and consider using a password manager.</p>
+        </div>
+        
+        <div class="buttons-container">
+            <a href="index.html" class="btn generate-btn">Generate Password</a>
+            <button class="btn about-btn" id="aboutBtn">About Us</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('aboutBtn').addEventListener('click', function() {
+            const aboutSection = document.getElementById('aboutSection');
+            if (aboutSection.style.display === 'block') {
+                aboutSection.style.display = 'none';
+                this.textContent = 'About Us';
+            } else {
+                aboutSection.style.display = 'block';
+                this.textContent = 'Hide Info';
+            }
+        });
+    </script>
+</body>
+</html>

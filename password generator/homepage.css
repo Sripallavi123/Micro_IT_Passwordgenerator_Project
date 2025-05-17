@@ -1,0 +1,187 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.7;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 50%, #80deea 100%);
+    z-index: -1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Typography */
+h1, h2, h3 {
+    color: #00796b;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-top: 2rem;
+    border-bottom: 2px solid #b2ebf2;
+    padding-bottom: 0.5rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: #00897b;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #00695c;
+    margin-bottom: 2rem;
+}
+
+p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+/* Content Boxes */
+.content-box {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Statistics */
+.alarming-stats {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1.5rem;
+    min-width: 250px;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #d32f2f;
+    margin-bottom: 0.5rem;
+}
+
+.stat-desc {
+    font-size: 1.1rem;
+    color: #424242;
+}
+
+/* Lists */
+.danger-list {
+    list-style-type: none;
+    margin: 1.5rem 0;
+}
+
+.danger-list li {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: flex-start;
+}
+
+.danger-list li:before {
+    content: "⚠️";
+    margin-right: 1rem;
+}
+
+/* Password Tips */
+.password-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.tip-card {
+    background-color: #e8f5e9;
+    border-left: 4px solid #4caf50;
+    padding: 1.5rem;
+    border-radius: 4px;
+}
+
+.tip-card h3 {
+    margin-top: 0;
+}
+
+/* CTA */
+.cta-box {
+    text-align: center;
+    margin: 3rem 0;
+    padding: 2rem;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #00796b;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.cta-button:hover {
+    background-color: #00695c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .content-box {
+        padding: 1.5rem;
+    }
+    
+    .stat-item {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
